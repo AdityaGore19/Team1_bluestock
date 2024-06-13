@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Upcoming IPO{% endblock %}
+
+{% block content %}
+<nav class="mx-5 my-3" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="">Home</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'ipo' %}">IPO</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><a href="{% url 'upcoming' %}">Upcoming IPO</a></li>
+    </ol>
+</nav>
+
+<div class="mx-5 my-3">
+    <h3>Upcoming Page</h3>
+    <p>Companies that have filed for an IPO with SEBI. Few details might be disclosed by the companies later.</p>
+</div>
+
+<div class="row">
+    {% for ipo in upcoming_ipos %}
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ ipo.company_name }}</h5>
+                    <p class="card-text">Expected Listing Date: {{ ipo.listing_date }}</p>
+                    <p class="card-text">{{ ipo.description }}</p>
+                    <a href="#" class="btn btn-primary">More details</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<br>
+
+{% endblock %}
+    
